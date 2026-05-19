@@ -108,3 +108,11 @@ jobs:
         # Test ZIP file integrity before extraction
         Get-Command Test-Path -ErrorAction Stop
         # Add checksum verification if available
+    - name: Download launch4j
+      run: |
+        # Try GitHub releases as fallback
+        $ProgressPreference = 'SilentlyContinue'
+        $url = "https://github.com/gaborkolozsy/launch4j/releases/download/3.50/launch4j-3.50-win32.zip"
+        Invoke-WebRequest -Uri $url -OutFile launch4j.zip -UseBasicParsing
+        Expand-Archive -Path launch4j.zip -DestinationPath .
+      shell: powershell
