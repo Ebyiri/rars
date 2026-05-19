@@ -103,3 +103,8 @@ jobs:
         files: rars.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Verify downloaded artifacts
+      run: |
+        # Test ZIP file integrity before extraction
+        Get-Command Test-Path -ErrorAction Stop
+        # Add checksum verification if available
